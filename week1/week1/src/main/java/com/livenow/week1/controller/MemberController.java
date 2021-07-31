@@ -6,6 +6,7 @@ import com.livenow.week1.controller.dto.MemberSaveRequestDto;
 import com.livenow.week1.controller.dto.MemberSaveResponseDto;
 import com.livenow.week1.service.MemberService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,9 +22,8 @@ public class MemberController {
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.OK)
-    public MemberSaveResponseDto saveMember(@RequestBody MemberSaveRequestDto memberSaveRequestDto) {
-        return memberService.save(memberSaveRequestDto);
+    public ResponseEntity saveMember(@RequestBody MemberSaveRequestDto memberSaveRequestDto) {
+        return new ResponseEntity(memberService.save(memberSaveRequestDto), HttpStatus.OK);
     }
 
     @GetMapping

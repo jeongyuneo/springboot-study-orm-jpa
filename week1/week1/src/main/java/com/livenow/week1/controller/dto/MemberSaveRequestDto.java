@@ -2,8 +2,10 @@ package com.livenow.week1.controller.dto;
 
 import com.livenow.week1.domain.Member;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 public class MemberSaveRequestDto {
 
     private String name;
