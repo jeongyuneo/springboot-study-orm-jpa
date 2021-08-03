@@ -1,15 +1,13 @@
 package com.livenow.week1.controller;
 
-import com.livenow.week1.controller.dto.MemberDeleteResponseDto;
-import com.livenow.week1.controller.dto.MemberFindResponseDto;
 import com.livenow.week1.controller.dto.MemberSaveRequestDto;
-import com.livenow.week1.controller.dto.MemberSaveResponseDto;
 import com.livenow.week1.service.MemberService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/members")
@@ -27,20 +25,20 @@ public class MemberController {
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public List<MemberFindResponseDto> findMembers() {
-        return memberService.findAll();
+    public List<ResponseEntity> findMembers() {
+        return memberService.findAll()
+                .stream()
+                .map(member -> new ResponseEntity(member, HttpStatus.OK))
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public MemberFindResponseDto findMember(@PathVariable Long id) {
-        return memberService.findById(id);
+    public ResponseEntity findMember(@PathVariable Long id) {
+        return new ResponseEntity(memberService.findById(id), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}}")
-    @ResponseStatus(HttpStatus.OK)
-    public MemberDeleteResponseDto deleteMember(@PathVariable Long id) {
-        return memberService.delete(id);
+    public ResponseEntity deleteMember(@PathVariable Long id) {
+        return new ResponseEntity(memberService.delete(id), HttpStatus.OK);
     }
 }
