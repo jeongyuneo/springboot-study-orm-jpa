@@ -1,11 +1,12 @@
 package com.livenow.week1.controller.dto;
 
 import com.livenow.week1.domain.Member;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MemberSaveRequestDto {
 
     private String name;

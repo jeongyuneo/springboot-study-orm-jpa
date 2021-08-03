@@ -1,12 +1,15 @@
 package com.livenow.week1.domain;
 
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Getter
 @Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
 
     @Id
@@ -20,9 +23,6 @@ public class Member {
 
     private String name;
     private int age;
-
-    protected Member() {
-    }
 
     @Builder
     public Member(Long id, String name, int age, Team team) {

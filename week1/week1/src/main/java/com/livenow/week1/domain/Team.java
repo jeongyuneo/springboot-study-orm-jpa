@@ -1,7 +1,9 @@
 package com.livenow.week1.domain;
 
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.List;
 
 @Getter
 @Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Team {
 
     @Id
@@ -20,9 +23,6 @@ public class Team {
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.PERSIST)
     private List<Member> members = new ArrayList<>();
-
-    protected Team() {
-    }
 
     @Builder
     public Team(Long id, String name) {
