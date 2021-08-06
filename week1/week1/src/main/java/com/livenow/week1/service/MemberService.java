@@ -21,6 +21,7 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
+    @Transactional
     public MemberSaveResponseDto save(MemberSaveRequestDto memberSaveRequestDto) {
         Member member = Member.builder()
                 .name(memberSaveRequestDto.getName())
@@ -29,6 +30,7 @@ public class MemberService {
         return new MemberSaveResponseDto(memberRepository.save(member));
     }
 
+    @Transactional(readOnly = true)
     public List<MemberFindResponseDto> findAll() {
         return memberRepository.findAll()
                 .stream()
@@ -36,6 +38,7 @@ public class MemberService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
     public MemberFindResponseDto findById(Long id) {
         return new MemberFindResponseDto(memberRepository.findById(id));
     }

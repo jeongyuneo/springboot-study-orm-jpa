@@ -22,6 +22,7 @@ public class TeamService {
         this.teamRepository = teamRepository;
     }
 
+    @Transactional
     public TeamSaveResponseDto save(String name) {
         Team team = Team.builder()
                 .name(name)
@@ -37,6 +38,7 @@ public class TeamService {
         return new MemberAddResponseDto(team, member);
     }
 
+    @Transactional
     public MemberDeleteResponseDto deleteMember(Long id) {
         Member member = memberRepository.findById(id);
         member.deleteTeam();
