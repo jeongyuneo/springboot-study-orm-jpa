@@ -24,20 +24,35 @@ class MemberRepositoryTest {
     @Test
     void memberGetTeam() {
         //given
-        Member member = new Member(1L, "동현이 샛기", 3);
+//        Member member = Member.builder()
+//                .id(1L)
+//                .name("나는 정윤")
+//                .age(23)
+//                .build();
+        Team team = Team.builder()
+                .id(1L)
+                .name("네카라쿠배")
+                .build();
         //when
-        memberRepository.save(member);
-        Member findMember = memberRepository.findById(1L);
+        teamRepository.save(team);
+        Team findTeam = teamRepository.findById(1L);
+        //Member findMember = memberRepository.findById(1L);
         //then
-        Assertions.assertThat(member.getId()).isEqualTo(findMember.getId());
+        Assertions.assertThat(team.getId()).isEqualTo(findTeam.getId());
     }
 
-
-    @Test
+/*    @Test
     void memberGetTeam2() {
         //given
-        Member member = new Member(1L, "동현이 샛기", 3);
-        Team team = new Team(1L, "배달의 민족");
+        Member member = Member.builder()
+                .id(1L)
+                .name("나는 정윤")
+                .age(23)
+                .build();
+        Team team = Team.builder()
+                .id(1L)
+                .name("네카라쿠배")
+                .build();
         member.changeTeam(team);
         //when
         //teamRepository.save(team);
@@ -49,5 +64,5 @@ class MemberRepositoryTest {
         //then
         Assertions.assertThat(findMember.getTeam()).isNotNull();
         Assertions.assertThat(team2).isNotNull();
-    }
+    }*/
 }
