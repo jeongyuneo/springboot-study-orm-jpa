@@ -1,10 +1,13 @@
 package week7.domain;
 
-public abstract class Delimiter {
+public abstract class Delimiter implements Action {
 
-    protected String value;
+    private String value;
 
+    @Override
     public String[] split(String input) {
-        return input.split(value);
+        return input.split(getDelimiter());
     };
+
+    protected abstract String getDelimiter();
 }
